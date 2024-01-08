@@ -53,8 +53,13 @@ func sendMail(sendTo []string) error {
 	smtpPort := "587"
 
 	// Message.
-	message := fmt.Sprintf("Bu bir test mesajıdır. \n linke tıklayarak hesabınızı onaylayabilirsiniz \n %s \n\n", "http://localhost:3000/verify/351321321321321")
-
+	subject := "Subject: Test email from Go!\n"
+	mime := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";\n\n"
+	body := `<html><body>
+	<h1>Test email from Go!</h1>
+	<a style="display:grid; place-items:center; width: 200px; padding: 20px; background-color:black; color:white;" href="http://localhost:3000/verify/123456789">Verify</a>
+	</body></html>`
+	message := []byte(subject + mime + body)
 	// Authentication.
 	auth := smtp.PlainAuth("", from, password, smtpHost)
 
