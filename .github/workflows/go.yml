@@ -42,5 +42,3 @@ jobs:
         run: |
           ./smtpservice.com.exe & sleep 5
           
-      - name: Stop Fiber application
-        run: killall smtpservice.com.exe # Replace with your actual executable name
